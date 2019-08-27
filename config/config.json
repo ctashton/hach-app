@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": "J4801787582",
+    "database": "hach_schema",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": "J4801787582",
+    "database": "hach_schema",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "yptm0l44sr5xthrf",
+    "password": "u38k3i1vdvr9hji1",
+    "database": "zyh4r9hb7p7tmpgk",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "use_env_variable": "JAWSDB_URL"
+  }
+}
