@@ -10,10 +10,13 @@ const customAuthMiddleware = require('./middleware/custom-auth-middleware');
 const userController = require('./controllers/user-controller');
 const recipeController = require('./controllers/recipe-controller');
 const chefController = require('./controllers/chef-controller');
+const{ uploader, cloudinaryConfig } = require('./config/cloudinaryConfig');
 // directory references
 const clientDir = path.join(__dirname, `../client`);
-
+const cloudinary = require('cloudinary');
+const multerUploads = require('./middleware/multer')
 // Express
+
 const PORT = process.env.PORT || 3001; /* Declare different port than 3000 due to react */
 const app = express(); /* Initialize Express */
 app.use(cors());
@@ -37,9 +40,11 @@ app.use(express.static(`${clientDir}/build`))
 /* Server routes */
 // require(`./routes/html-routes`)(app) 
 // require(`./routes/api-routes`)(app)
+app.use('*', cloudinaryConfig);
 app.use(userController);
 app.use(recipeController);
 app.use(chefController);
+
 app.get('/*', (req, res) => {
   console.log('hi from app.get')
   console.log(req)
@@ -56,9 +61,4 @@ db.sequelize.sync({ force: true}).then(() => {
     })
 });
 
-console.log({
-  host            : process.env.MYSQL_HOST,
-  user            : process.env.MYSQL_USER,
-  password        : process.env.MYSQL_SECRET,
-  database        : process.env.MYSQL_DB
-})
+console.log(process.env)
