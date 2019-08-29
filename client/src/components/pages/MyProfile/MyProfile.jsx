@@ -107,7 +107,7 @@ class MyProfile extends Component {
     // } else
     return (
       <div className="MyProfile">
-        <form className="form-group" action={"/upload/" + this.state.token} enctype="multipart/form-data" method="POST">
+        <form className="form-group" action={"/upload/" + this.state.token} encType="multipart/form-data" method="POST">
           <div className="form-group">
             <label htmlFor="image">Upload a Profile Picture:</label>
             <div>
@@ -123,7 +123,7 @@ class MyProfile extends Component {
               value={this.state.chefQualifications}
               onChange={this.handleChange}
             >
-              <option selected disabled>Choose an option</option>
+              <option defaultValue disabled>Choose an option</option>
               <option>Homemade Recipes</option>
               <option>Rookie Chef</option>
               <option>Veteran Chef</option>
@@ -149,7 +149,7 @@ class MyProfile extends Component {
               value={this.state.chefRate}
               onChange={this.handleChange}
             >
-              <option selected disabled>Choose an option</option>
+              <option defaultValue disabled>Choose an option</option>
               <option>$</option>
               <option>$$</option>
               <option>$$$</option>

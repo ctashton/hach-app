@@ -37,7 +37,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   chefTable.associate = function(models) {
     // associations can be defined here
-    chefTable.belongsTo(models.User)
+    chefTable.belongsTo(models.User, {
+        foreignKey: 'UserId'
+    })
   };
   return chefTable;
 };

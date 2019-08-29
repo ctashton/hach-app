@@ -13,6 +13,7 @@ import withAuth from './withAuth'
 import AddRecipe from './components/pages/AddRecipe/AddRecipe'
 import MyRecipes from './components/pages/MyRecipes/MyRecipes'
 import MyProfile from './components/pages/MyProfile/MyProfile'
+import ViewProfile from './components/pages/ViewProfile/ViewProfile'
 
 class App extends Component { 
   constructor() {
@@ -45,6 +46,7 @@ class App extends Component {
         <Route exact path="/AddRecipe" component = {withAuth(AddRecipe)} />
         <Route exact path="/MyRecipes" component = {withAuth(MyRecipes)} />
         <Route exact path="/EditProfile" component = {withAuth(MyProfile)} />
+        <Route exact path="/viewprofile/:id" component = {withAuth(ViewProfile)} />
       </div>
     </Router>
     )

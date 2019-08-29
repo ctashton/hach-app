@@ -10,23 +10,43 @@ const { uploader, cloudinaryConfig } = require('../config/cloudinaryConfig')
 const { multerUploads, dataUri } = require('../middleware/multer')
 const { User, AuthToken, chefTable } = require("../models");
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, `${clientDir}/src/utilities/uploads`)
-//     },
-//     filename: (req, file, cb) => {
-//       cb(null, file.originalname)
-//     }
-//   })
+router.get('/chefprofile/:id', async (req, res) => {
+    const userid = req.params.id
+    User.findOne({
+        where: {
+            id: userid
+        },
+        include: [{
+            model: chefTable,
+            attributes: ['id', 'chefQualifications', 'chefRate', 'UserId', 'chefBio', 'chefProfilePictureURL'],
+            required: true,
+            raw: true
+        }]
+    })
+    .then( chef => {
+        res.send(chef)
+    })
+})
+
 
 router.get('/allchefs', async (req, res) => {
     User.findAll({
         where: {
             isChef: true
-        }
+        },
+        include: [{
+            model: chefTable,
+            attributes: ['id', 'chefQualifications', 'chefRate', 'UserId', 'chefBio', 'chefProfilePictureURL'],
+            required: true,
+            raw: true
+        }]
     })
         .then(chefs => {
-            return res.json(chefs)
+            
+            console.log(chefs.map(chef => {
+                return chef.chefTable
+            }))
+            res.send(chefs)
         })
 })
 
@@ -130,6 +150,16 @@ router.post('/upload/:token', multerUploads, (req, res) => {
 
 });
 
+router.get('/chefinfo/:id', (req, res) => {
+    console.log(req.params.id)
+    chefTable.findOne({
+        where: {
+            UserId: req.params.id
+        }
+    }).then(chefdata => {
+        return res.json(chefdata)
+    })
+})
 // router.post('/editprofile/:token', multer({storage: storage}).single('myprofile'),  async (req, res) => {
 //     console.log(req.file)
 //     const filePath = `${req.file.destination}/${req.file.filename}`

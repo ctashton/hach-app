@@ -66,7 +66,7 @@ class ClientSignUp extends Component {
           <form className="form-group" onSubmit={this.handleSubmit}>
             <label htmlFor="firstName">Enter your First Name: </label>
             <input
-              class="form-input"
+              className="form-input"
               id="firstname"
               name="firstname"
               type="text"
@@ -76,7 +76,7 @@ class ClientSignUp extends Component {
             <div className="form-group">
             <label htmlFor="lastName">Enter your Last Name: </label>
             <input
-              class="form-input"
+              className="form-input"
               id="lastname"
               name="lastname"
               type="text"
@@ -88,7 +88,7 @@ class ClientSignUp extends Component {
             <div className="form-group">
             <label htmlFor="phoneNumber">Enter your Phone Number: </label>
             <input
-              class="form-input"
+              className="form-input"
               id="phone"
               name="phone"
               type="number"
@@ -99,7 +99,7 @@ class ClientSignUp extends Component {
             <div className="form-group">
             <label htmlFor="email">Enter your email: </label>
             <input
-              class="form-input"
+              className="form-input"
               id="email"
               name="email"
               type="email"
@@ -110,7 +110,7 @@ class ClientSignUp extends Component {
             <div className="form-group">
             <label htmlFor="username">Enter your username: </label>
             <input
-              class="form-input"
+              className="form-input"
               id="username"
               name="username"
               type="text"
@@ -121,7 +121,7 @@ class ClientSignUp extends Component {
             <div className="form-group">
             <label htmlFor="password">Enter your password: </label>
             <input
-              class="form-input"
+              className="form-input"
               id="password"
               name="password"
               type="password"

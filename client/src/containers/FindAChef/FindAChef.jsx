@@ -4,14 +4,18 @@ import axios from 'axios';
 // import chefs from '../../devChefData.json'
 
 class FindAChef extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
-            //dummy data imported
-            chefs: []
+            chefs: [],
+            chefId: null
         };
     }
 
+    handleChefId = chefId => {
+        this.setState({chefId})
+        console.log(this.state)
+    }
     componentDidMount() {
         this.searchChefs();
         console.log(this.state)
@@ -19,11 +23,25 @@ class FindAChef extends Component {
     searchChefs = () =>{
         axios.get('/allchefs')
         .then(res => {
-            console.log(res.data)
+            console.log("All chef data: " + JSON.stringify(res))
+            let userdata = res.data
+
+            // userdata.forEach(element => {
+            //     axios.get('/chefinfo/' + userdata.id).then(results => {
+            //         console.log(results)
+            //     })
+            // });
             this.setState({chefs: res.data})
-            console.log(this.state)
+            console.log("searchchef state: " + JSON.stringify(this.state.chefs))
         })
     }
+    handleImageURL= (url) => {
+        console.log("starting URL transformation for: " + url)
+            let index = -24
+            let newurl = url.slice(index)
+            console.log(newurl)
+            return newurl
+        }
     render() {
         return (        
         <div className="container">
@@ -42,7 +60,9 @@ class FindAChef extends Component {
                 id={chef.id}
                 name={chef.userFirstName}
                 rating={chef.rating}
-                image={chef.image}
+                image={this.handleImageURL(chef.chefTable.chefProfilePictureURL)}
+                handleChefId = {this.handleChefId}
+                bio={chef.chefTable.chefBio}
             />
             ))} 
             </div>

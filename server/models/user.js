@@ -49,8 +49,9 @@ module.exports = (sequelize, DataTypes) => {
 
   }, {});
   //Associations create a two way connection between tables
-  User.associate = function({ AuthToken }) {
+  User.associate = function({ AuthToken, chefTable }) {
     User.hasMany(AuthToken);
+    User.hasOne(chefTable);
   };
 
   // Class method for authentication
